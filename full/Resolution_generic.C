@@ -1,14 +1,8 @@
-#include "/phenix/u/abhisek/tools/SetOKStyle.C"
+
 
 void Resolution_generic()
 {
-  // --- probably want to remove and rely on my defaults in rootlogon
-  SetOKStyle();
-  OKStyle->SetPadGridX(0);
-  OKStyle->SetPadGridY(0);
-  OKStyle->SetOptTitle(0);
-  OKStyle->SetOptStat(0);
-  OKStyle->SetPadRightMargin(0.01);
+
   // --- energy values
   double en[] = {2, 4, 6, 8, 12, 16, 24, 28};
   // --- files to read in corresponding to above energies in order
