@@ -1,0 +1,6 @@
+
+
+Resolution_generic.C --- draws 1d energy distributions, resolution and linearity vs energy
+
+plot_hcal.C --- draws 1d ADC distributions for each tower
+
