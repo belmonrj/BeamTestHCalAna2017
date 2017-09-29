@@ -7,3 +7,8 @@ Resolution_generic.C --- draws 1d energy distributions, resolution and linearity
 
 plot_hcal.C --- draws 1d ADC distributions for each tower
 
+self_check.C --- draws 1d ADC distributions comparing BNL and FNAL (triggering?)
+self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (triggering?) but input files appear to be missing
+
+
+
