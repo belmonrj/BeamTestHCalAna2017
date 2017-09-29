@@ -154,6 +154,7 @@ void Resolution_generic()
       linearity->SetBinContent(linearity->FindBin(en[ifile]), gaus->GetParameter(1));
       linearity->SetBinError(linearity->FindBin(en[ifile]), gaus->GetParError(1));
     }
+  can->Print("figure_multipanel_energyreso.png");
   // --- setup for more plots, not printed to file
   TLegend * legend = new TLegend( 0.2, 0.7, 0.8, 0.88, "", "NDC" );
   legend->SetFillColor(0);
@@ -175,10 +176,12 @@ void Resolution_generic()
   legend->AddEntry( f_calo_r,  name.Data(), "L" );
   legend->Draw();
   can2->Update();
+  can2->Print("figure_energyreso.png");
   // --- linearity plot starts here
   TCanvas *c2 = new TCanvas("c2","c2",800,600);
   linearity->Draw();
   linearity->Fit("pol1");
+  c2->Print("figure_energylinearity.png");
   // --- now write all the histograms to file
   fout->cd();
   res->Write();
