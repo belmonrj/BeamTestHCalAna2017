@@ -46,8 +46,8 @@ void balance_emcal_weight()
       name = Form("hprofile%i", ifile);
       // --- create a new histogram with the above name
       hprof = new TProfile(name.Data(),name.Data(), 100, -1, 1);
-      // --- change to the TPad unique to this file/energy
-      can->cd(ifile+1);
+      // --- change to the TPad unique to this file/energy and set logz
+      (can->cd(ifile+1))->SetLogz();
       // --- loop over a set of weights for this file
       for(weight[ifile]=weight_min[ifile]; weight[ifile]<weight_max[ifile]; weight[ifile]+=0.001)
         {
@@ -84,5 +84,7 @@ void balance_emcal_weight()
           can->Update();
         } // loop over weights
     } // loop over files
+
+  can->Print("figure_balance_emcal_weight.png");
 
 } // end of macro
