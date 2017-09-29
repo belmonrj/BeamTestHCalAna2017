@@ -1,0 +1,9 @@
+This directory makes the energy resolution and linearity for the full calorimeter system.
+Though not set up yet, it's possible to make different selections on where the shower originates,
+as was done in the 2016 beam test paper.
+
+Resolution_generic.C is the macro that makes the resolution and linearity plots along with
+an output root file with various histograms.
+
+balance_emcal_weight.C calculates weights for the resolution macro (exact purpose TBD).
+
