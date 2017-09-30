@@ -1,5 +1,6 @@
 
 
+compare_data.C --- draw resolution and linearity vs energy for both pi+ and pi-
 
 hcal_balance.C --- draws 2d hcal energy assymmetry vs energy and 1d profile on top
 
