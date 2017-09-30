@@ -1,4 +1,6 @@
+CDR_compare_plot.C --- draws a single panel 1d distribution comparing self- and external triggering
 
+DrawPrototype2HCAL.C --- draws 1d distribution for each tower (needs work)
 
 compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
 
@@ -8,10 +10,10 @@ hcal_balance.C --- draws 2d hcal energy assymmetry vs energy and 1d profile on t
 
 Resolution_generic.C --- draws 1d energy distributions, resolution and linearity vs energy
 
-plot_hcal.C --- draws 1d ADC distributions for each tower
+plot_hcal.C --- draws 1d ADC distributions for each tower (needs work)
 
-self_check.C --- draws 1d ADC distributions comparing BNL and FNAL (triggering?)
-self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (triggering?) but input files appear to be missing
+self_check.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering)
+self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering) but input files appear to be missing
 
 
 

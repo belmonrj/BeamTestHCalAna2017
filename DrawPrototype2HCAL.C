@@ -6,8 +6,6 @@
 #include <TLatex.h>
 #include <TGraphErrors.h>
 #include <cassert>
-#include "SaveCanvas.C"
-#include "SetOKStyle.C"
 using namespace std;
 
 TFile * _file0 = NULL;
@@ -17,18 +15,17 @@ TText *t;
 TH1F *h;
 
 int DrawPrototype2HCAL(const char *particle = "not_set",
-		       const double momentum = -1,
-		       //const TString infile =  "ALL.root"
-		       const TString infile =  "/phenix/u/jinhuang/links/sPHENIX_work/Prototype_2017/Production_0216_UpdateCalib/beam_00004011-0000_DSTReader.root"
-		  //"/gpfs/mnt/gpfs04/sphenix/user/abhisek/production/outputdir/beam_00003285-0000_DSTReader.root"
-			)
+                       const double momentum = -1,
+                       //const TString infile =  "ALL.root"
+                       const TString infile =  "/phenix/u/jinhuang/links/sPHENIX_work/Prototype_2017/Production_0216_UpdateCalib/beam_00004011-0000_DSTReader.root"
+                       //"/gpfs/mnt/gpfs04/sphenix/user/abhisek/production/outputdir/beam_00003285-0000_DSTReader.root"
+                       )
 {
   cout << "Particle " << particle << endl;
   cout << "Momentum " << momentum << endl;
   cout << "Infile " << infile << endl;
-  double emcal_calibration = 1.; 
+  double emcal_calibration = 1.;
 
-  SetOKStyle();
   gStyle->SetOptStat(0);
   gStyle->SetOptFit(1111);
   TVirtualFitter::SetDefaultFitter("Minuit2");
@@ -55,16 +52,16 @@ int DrawPrototype2HCAL(const char *particle = "not_set",
       _file0->SetName(infile);
     }
 
-   assert(_file0);
-   TCut event_sel = "1*1";
-   cuts = "_all_event";
+  assert(_file0);
+  TCut event_sel = "1*1";
+  cuts = "_all_event";
 
   cout << "Build event selection of " << (const char *) event_sel << endl;
-   T->Draw(">>EventList", event_sel);
+  T->Draw(">>EventList", event_sel);
   TEventList * elist = gDirectory->GetObjectChecked("EventList", "TEventList");
   cout << elist->GetN() << " / " << T->GetEntriesFast() << " events selected"
-      << endl;
-  T->SetEventList(elist);  
+       << endl;
+  T->SetEventList(elist);
   //Dump();
   HCALDistribution("HCALIN", true);
   HCALDistribution("HCALOUT", true);
@@ -77,14 +74,14 @@ void HCALDistribution(TString det = "HCALIN",bool log_scale = false)
   TString hilo = "LG";
   TText * t;
   TCanvas *c1 = new TCanvas(
-      det + gain + TString(log_scale ? "_Log" : "") + cuts,
-      det + gain + TString(log_scale ? "_Log" : "") + cuts,
-      800, 800);
+                            det + gain + TString(log_scale ? "_Log" : "") + cuts,
+                            det + gain + TString(log_scale ? "_Log" : "") + cuts,
+                            800, 800);
   c1->Divide(4, 4, 0., 0.01);
   int idx = 1;
   TPad * p;
-  
-   for (int iphi = 4 - 1; iphi >= 0; iphi--)
+
+  for (int iphi = 4 - 1; iphi >= 0; iphi--)
     {
       for (int ieta = 0; ieta < 4; ieta++)
         {
@@ -99,14 +96,14 @@ void HCALDistribution(TString det = "HCALIN",bool log_scale = false)
           p->SetGridy(0);
 
           TString hname = Form("hEnergy_ieta%d_iphi%d", ieta, iphi)
-              + det;
+            + det;
 
           TH1 * h = NULL;
 
           //h = new TH2F(hname,
           //      Form(";Tower Energy Sum (ADC);Count / bin"), 24, -.5, 23.5, 550, 0, 2050);
           h = new TH1F(hname,
-                Form(";Tower Energy Sum (ADC);Count / bin"), 550, 0, 2050);
+                       Form(";Tower Energy Sum (ADC);Count / bin"), 550, 0, 2050);
           h->SetLineWidth(0);
           h->SetLineColor(kBlue + 3);
           h->SetFillColor(kBlue + 3);
@@ -115,27 +112,28 @@ void HCALDistribution(TString det = "HCALIN",bool log_scale = false)
           h->GetYaxis()->SetLabelSize(.08);
 
           TString sdraw = "TMath::Abs(TOWER_" + gain
-              + "_" + hilo + "_"+ det +"[].get_energy())>>" + hname;
+            + "_" + hilo + "_"+ det +"[].get_energy())>>" + hname;
 
-         TString scut =
-              Form(
-                  "TOWER_%s_%s_%s[].get_bineta()==%d && TOWER_%s_%s_%s[].get_binphi()==%d",
-                  gain.Data(), hilo.Data(), det.Data(),ieta, gain.Data(), hilo.Data(), det.Data(), iphi);
-         //cout << "T->Draw(\"" << sdraw << "\",\"" << scut << "\");" << endl;
-         T->Draw(sdraw, scut, "colz");
-         t = new TText(0.2, 0.92, Form("E=%0.2f GeV", h->GetIntegral()));
-         t->Draw("same");
-       }
-      }
+          TString scut =
+            Form(
+                 "TOWER_%s_%s_%s[].get_bineta()==%d && TOWER_%s_%s_%s[].get_binphi()==%d",
+                 gain.Data(), hilo.Data(), det.Data(),ieta, gain.Data(), hilo.Data(), det.Data(), iphi);
+          //cout << "T->Draw(\"" << sdraw << "\",\"" << scut << "\");" << endl;
+          T->Draw(sdraw, scut, "colz");
+          t = new TText(0.2, 0.92, Form("E=%0.2f GeV", h->GetIntegral()));
+          t->Draw("same");
+        }
+    }
 
-   SaveCanvas(c1, TString(c1->GetName()), kTRUE);
+  //SaveCanvas(c1, TString(c1->GetName()), kTRUE);
+  c1->Print("figure_prototype2hcal.png");
 }
 
 void Dump()
 {
- TString name = "output";
- //name += cuts;
- name += ".txt";
- T->Process("Prototype2_DSTReader.C+",name.Data());
+  TString name = "output";
+  //name += cuts;
+  name += ".txt";
+  T->Process("Prototype2_DSTReader.C+",name.Data());
 }
 
