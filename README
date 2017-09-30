@@ -1,6 +1,8 @@
 
 
-compare_data.C --- draw resolution and linearity vs energy for both pi+ and pi-
+compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
+
+compare_signal_sim.C --- draws 1d distribution comparison between simulation and real data
 
 hcal_balance.C --- draws 2d hcal energy assymmetry vs energy and 1d profile on top
 
