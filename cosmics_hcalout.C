@@ -104,6 +104,7 @@ void cosmics_hcalout(bool log_scale=false)
         } // loop over eta
     } // loop over phi
 
-  c1->Print("figure_cosmics_hcalout.png");
+  c1->Print("figures/RB_cosmics_hcalout.png");
+  c1->Print("figures/RB_cosmics_hcalout.pdf");
 
 }

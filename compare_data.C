@@ -134,10 +134,12 @@ void compare_data()
 
   can->cd();
   legend->Draw("Same");
-  can->Print("figure_hcalonly_resolution_comparison_pionplusminus.png");
+  can->Print("figures/RB_hcalonly_resolution_comparison_pionplusminus.png");
+  can->Print("figures/RB_hcalonly_resolution_comparison_pionplusminus.pdf");
   can3->cd();
   legend2->Draw("Same");
-  can3->Print("figure_hcalonly_linearity_comparison_pionplusminus.png");
+  can3->Print("figures/RB_hcalonly_linearity_comparison_pionplusminus.png");
+  can3->Print("figures/RB_hcalonly_linearity_comparison_pionplusminus.pdf");
 
 
 }

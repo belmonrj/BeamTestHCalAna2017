@@ -86,6 +86,7 @@ void plot_hcal(bool log_scale=true)
         } // loop over eta
     } // loop over phi
 
-  c1->Print("figure_hcalonly_adcdistributiontowers.png");
+  c1->Print("figures/RB_hcalonly_adcdistributiontowers.png");
+  c1->Print("figures/RB_hcalonly_adcdistributiontowers.pdf");
 
 }

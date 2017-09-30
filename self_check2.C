@@ -135,6 +135,7 @@ void self_check2(bool log_scale=false)
         }
     }
 
-  c1->Print("figure_selfcheck2.png");
+  c1->Print("figures/RB_selfcheck2.png");
+  c1->Print("figures/RB_selfcheck2.pdf");
 
 }

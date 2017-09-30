@@ -149,6 +149,7 @@ void cosmics_hcal_compare(bool log_scale=false)
         } // loop over eta
     } // loop over phi
 
-  c1->Print("figure_cosmics_hcal_compare.png");
+  c1->Print("figures/RB_cosmics_hcal_compare.png");
+  c1->Print("figures/RB_cosmics_hcal_compare.pdf");
 
 }

@@ -125,8 +125,9 @@ void HCALDistribution(TString det = "HCALIN",bool log_scale = false)
         }
     }
 
-  //SaveCanvas(c1, TString(c1->GetName()), kTRUE);
-  c1->Print("figure_prototype2hcal.png");
+  c1->Print("figures/RB_prototype2hcal.png");
+  c1->Print("figures/RB_prototype2hcal.pdf");
+
 }
 
 void Dump()

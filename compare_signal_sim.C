@@ -120,6 +120,7 @@ void compare_signal_sim()
   //p->SetLeftMargin(0);
   //p->SetRightMargin(0);
 
-  can->Print("figure_hcalonly_sim_comparison.png");
+  can->Print("figures/RB_hcalonly_sim_comparison.png");
+  can->Print("figures/RB_hcalonly_sim_comparison.pdf");
 
 }

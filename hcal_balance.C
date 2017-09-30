@@ -84,6 +84,7 @@ void hcal_balance()
       can->Update();
     }
 
-  can->Print("figure_hcalonly_hcalbalance.png");
+  can->Print("figures/RB_hcalonly_hcalbalance.png");
+  can->Print("figures/RB_hcalonly_hcalbalance.pdf");
 
 }

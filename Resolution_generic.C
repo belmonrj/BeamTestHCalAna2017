@@ -131,7 +131,8 @@ void Resolution_generic()
       linearity->SetBinContent(linearity->FindBin(en[ifile]), gaus->GetParameter(1));
       linearity->SetBinError(linearity->FindBin(en[ifile]), gaus->GetParError(1));
     }
-  can->Print("figure_hcalonly_multipanel_energyreso.png");
+  can->Print("figures/RB_hcalonly_multipanel_energyreso.png");
+  can->Print("figures/RB_hcalonly_multipanel_energyreso.pdf");
   TLegend * legend = new TLegend( 0.2, 0.7, 0.8, 0.88, "", "NDC" );
   legend->SetFillColor(0);
   legend->SetBorderSize(0);
@@ -153,7 +154,8 @@ void Resolution_generic()
   legend->AddEntry( f_calo_r,  name.Data(), "L" );
   legend->Draw();
   can2->Update();
-  can2->Print("figure_hcalonly_energyreso.png");
+  can2->Print("figures/RB_hcalonly_energyreso.png");
+  can2->Print("figures/RB_hcalonly_energyreso.pdf");
   TCanvas *c2 = new TCanvas("c2","c2",800,600);
   //TF1 *fa = new TF1(Form("fa_%i",ifile),"([0]*x-[1]*x*x)",-0.1,65.);
   TF1 *fa = new TF1(Form("fa_%i",ifile),"([0]*x)",-0.1,65.);
@@ -161,7 +163,8 @@ void Resolution_generic()
   linearity->Fit(fa,"RM0","goff",-0.1,65);
   linearity->Draw();
   fa->Draw("Same");
-  c2->Print("figure_hcalonly_energylinearity.png");
+  c2->Print("figures/RB_hcalonly_energylinearity.png");
+  c2->Print("figures/RB_hcalonly_energylinearity.pdf");
   fout->cd();
   res->Write();
   f_calo_r->Write();

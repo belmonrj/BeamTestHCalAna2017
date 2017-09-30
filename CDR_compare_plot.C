@@ -135,6 +135,7 @@ void CDR_compare_plot(bool log_scale=false)
         } // eta bins
     } // phi bins
 
-  c1->Print("figure_CDRcompare.png");
+  c1->Print("figures/RB_CDRcompare.png");
+  c1->Print("figures/RB_CDRcompare.pdf");
 
 }
