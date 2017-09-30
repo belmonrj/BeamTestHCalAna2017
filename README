@@ -1,6 +1,10 @@
-CDR_compare_plot.C --- draws a single panel 1d distribution comparing self- and external triggering
+CDR_compare_plot.C --- draws a single panel 1d distribution comparing self- and external triggering (see also self_check macros belowa)
 
 DrawPrototype2HCAL.C --- draws 1d distribution for each tower (needs work)
+
+Fun4All_scan.C --- runs Fun4All to produce output (haven't tried this yet to see what exactly you get)
+
+Fun4All_scan.sh --- calls Fun4All_scan.C, called by submit.py and submit_full.py (see below)
 
 compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
 
@@ -21,4 +25,8 @@ plot_hcal.C --- draws 1d ADC distributions for each tower (needs work)
 
 self_check.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering)
 self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering) but input files appear to be missing
+
+submit.py --- python script to run Fun4All
+submit_full.py --- python script to run Fun4All
+
 
