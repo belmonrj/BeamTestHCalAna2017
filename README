@@ -6,6 +6,13 @@ compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
 
 compare_signal_sim.C --- draws 1d distribution comparison between simulation and real data
 
+cosmics macros --- draw 1d ADC distributions from cosmics for various detectors, comparisons are between prototype2 (2016) and prototype3 (2017)
+cosmics_hcal_compare.C
+cosmics_hcalin.C
+cosmics_hcalin_compare.C
+cosmics_hcalout.C
+cosmics_hcalout_compare.C
+
 hcal_balance.C --- draws 2d hcal energy assymmetry vs energy and 1d profile on top
 
 Resolution_generic.C --- draws 1d energy distributions, resolution and linearity vs energy
@@ -14,6 +21,4 @@ plot_hcal.C --- draws 1d ADC distributions for each tower (needs work)
 
 self_check.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering)
 self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (external and self-triggering) but input files appear to be missing
-
-
 
