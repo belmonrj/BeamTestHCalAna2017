@@ -3,7 +3,8 @@ void compare_signal_sim()
 {
   gStyle->SetOptStat(0);
   gStyle->SetOptTitle(0);
-  char* files[] = {"out_hcal_pionn.root", "proto3_sim/Full/out_pi-.root"};
+  //char* files[] = {"out_hcal_pionn.root", "proto3_sim/Full/out_pi-.root"};
+  char* files[] = {"out_hcal_pionp.root", "proto3_sim/Full/out_pi+.root"};
 
   TH1F *signal_data;
   TH1F *signal_sim;
@@ -19,8 +20,10 @@ void compare_signal_sim()
   legend2->SetTextSize( .03 );
 
   TString name;
-  //double en[] = {2, 4, 6, 8, 12, 16, 24}; //, 28};
-  double en[] = {2, 4, 6, 8, 12, 16, 24, 28};
+  // data is 32 GeV.. simulation is 28 GeV...
+  //double en[] = {2, 4, 6, 8, 12, 16, 24}; //, 28}; // pionn
+  double en[] = {2, 4, 6, 8, 12, 16, 20}; //, 28}; // pionp
+  //double en[] = {2, 4, 6, 8, 12, 16, 24, 32};
 
   char* tags[] = {"DATA", "SIM"};
 
@@ -45,7 +48,7 @@ void compare_signal_sim()
           TFile *fin = TFile::Open( files[itype], "READ" );
           if ( !fin ) {cout<<"null file"<<endl; continue;}
           signal_data = (TH1F*) fin->Get(name.Data());
-          if ( !signal_data ) {cout<<"null histo"<<endl; continue;}
+          if ( !signal_data ) {cout<<"null histo "<<name.Data()<<" from file "<<files[itype]<<endl; continue;}
           signal_data->SetMarkerStyle(20);
           signal_data->SetMarkerSize(0.8);
           signal_data->SetLineColor(colors[itype]);
@@ -120,7 +123,9 @@ void compare_signal_sim()
   //p->SetLeftMargin(0);
   //p->SetRightMargin(0);
 
-  can->Print("figures/RB_hcalonly_sim_comparison.png");
-  can->Print("figures/RB_hcalonly_sim_comparison.pdf");
+  // can->Print("figures/RB_hcalonly_sim_pionn_comparison.png");
+  // can->Print("figures/RB_hcalonly_sim_pionn_comparison.pdf");
+  can->Print("figures/RB_hcalonly_sim_pionp_comparison.png");
+  can->Print("figures/RB_hcalonly_sim_pionp_comparison.pdf");
 
 }
