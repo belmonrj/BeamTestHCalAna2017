@@ -6,6 +6,8 @@ Fun4All_scan.C --- runs Fun4All to produce output (haven't tried this yet to see
 
 Fun4All_scan.sh --- calls Fun4All_scan.C, called by submit.py and submit_full.py (see below)
 
+balance_emcal_weight.C --- calculates weights for the EMCal (used in Resolution_generic macros)
+
 compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
 
 compare_signal_sim.C --- draws 1d distribution comparison between simulation and real data
@@ -19,7 +21,8 @@ cosmics_hcalout_compare.C
 
 hcal_balance.C --- draws 2d hcal energy assymmetry vs energy and 1d profile on top
 
-Resolution_generic.C --- draws 1d energy distributions, resolution and linearity vs energy
+Resolution_generic.C --- draws 1d energy distributions, resolution and linearity vs energy, HCal only
+Resolution_generic_FullCalo.C --- draws 1d energy distributions, resolution and linearity vs energy, full calorimeter system
 
 plot_hcal.C --- draws 1d ADC distributions for each tower (needs work)
 
@@ -28,5 +31,4 @@ self_check2.C --- draws 1d ADC distributions comparing BNL and FNAL (external an
 
 submit.py --- python script to run Fun4All
 submit_full.py --- python script to run Fun4All
-
 
