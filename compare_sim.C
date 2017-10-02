@@ -9,7 +9,7 @@ void compare_sim()
   TH1F *linearity;
   TF1 *res_fit;
   // --- legend for energy resolution
-  TLegend * legend = new TLegend( 0.18, 0.7, 0.58, 0.9 );
+  TLegend * legend = new TLegend( 0.25, 0.60, 0.65, 0.83 );
   legend->SetFillColor(0);
   legend->SetBorderSize(0);
   legend->SetTextSize(0.05);
@@ -24,7 +24,7 @@ void compare_sim()
   char* tags[] = {"#pi^{+} (Geant4)", "#pi^{-} (Geant4)"};
   TCanvas *can = new TCanvas("can","");
   int colors[] = { 1,2,4};
-  TF1 * f_calo_r = new TF1("f_calo_r", "sqrt(2*2+[0]*[0]+[1]*[1]/x)/100", 0.3, 35);
+  TF1 * f_calo_r = new TF1("f_calo_r", "sqrt([0]*[0]+[1]*[1]/x)/100", 0.3, 35);
   f_calo_r->SetParLimits(0,0,30);
   f_calo_r->SetParLimits(1,0,200);
   bool is_prel = false;
@@ -79,7 +79,7 @@ void compare_sim()
       res_fit->Draw("Same");
       legend->AddEntry( res, tags[itype], "P");
       legend2->AddEntry( res, tags[itype], "P");
-      name  = Form("#DeltaE/E = 2%%(#deltap/p) #oplus %.1f%% #oplus %.1f%%/#sqrt{E}",
+      name  = Form("#DeltaE/E = %.1f%% #oplus %.1f%%/#sqrt{E}",
                    res_fit->GetParameter(0), res_fit->GetParameter(1));
       legend->AddEntry( res_fit->Clone(), name, "L");
       if(is_prel)
