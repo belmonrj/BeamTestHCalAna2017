@@ -98,7 +98,7 @@ void compare_data()
       linearity->GetYaxis()->SetLabelSize(0.06);
       linearity->GetXaxis()->SetTitle("Input Energy (GeV)");
       linearity->GetYaxis()->SetTitle("Measured Energy (GeV)");
-      linearity->Scale(1./0.816);
+      linearity->Scale(1./0.728);
       linearity->SetMaximum(65);
       linearity->SetAxisRange(0,65);
       (itype==0)? linearity->DrawClone("0"):linearity->DrawClone("Same,0");
@@ -111,7 +111,7 @@ void compare_data()
       name  = Form("E_{reco}=%.3f E_{truth}",fa->GetParameter(0));
       legend2->AddEntry(fa, name.Data(), "L");
       //if(is_prel) prel_text->Draw("Same");
-      if(itype==2) legend2->Draw("Same");
+      //if(itype==2) legend2->Draw("Same");
 
       //Ratio
       can3->cd();
