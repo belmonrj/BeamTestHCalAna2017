@@ -111,6 +111,7 @@ void compare_full()
       fa->SetLineColor( colors[itype] );
       fa->SetParameter(0,1.);
       fa->SetParLimits(0,0.6,1.8);
+      fa->FixParameter(0,0.892); // ...
       linearity->Fit(fa, "QRM0", "goff", -0.1, 35.);
       fa->Draw("Same");
       name  = Form("E_{reco}=%.3f E_{truth}",fa->GetParameter(0));
@@ -132,6 +133,7 @@ void compare_full()
       linearity->GetYaxis()->SetTitleOffset(0.4);
       linearity->GetYaxis()->SetNdivisions(505, true);
       (itype==0)?linearity->DrawCopy():linearity->DrawCopy("Same");
+      // --- draw straight line at unity for ratio part
       TLine *l = new TLine();
       l->DrawLine(0.0,1.0,linearity->GetNbinsX(),1.0);
 
