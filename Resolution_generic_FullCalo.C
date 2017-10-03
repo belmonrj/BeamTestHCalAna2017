@@ -31,9 +31,9 @@ void Resolution_generic_FullCalo()
   // --- pointer for 1d histograms created in the loop (should maybe initialize to NULL?)
   TH1F *hsignal;
   // --- boolean flags for selecting shower origin
-  bool hcalout_only = false; // shower begins in outer hcal
+  bool hcalout_only = true; // shower begins in outer hcal
   bool hcal_only = false; // shower begins in inner or outer hcal
-  bool full = true; // shower begins anywhere in calorimeter
+  bool full = false; // shower begins anywhere in calorimeter
   // --- histogram ranges
   double min_range = 0.;
   double max_range = 40.;
@@ -130,6 +130,7 @@ void Resolution_generic_FullCalo()
         }
       // --- fit the 1d with a gaussian to get the parameters
       // --- physics question: why not just get the variance straight from the histo?
+      if ( hcalout_only && en[ifile]>19 ) hsignal->Rebin(10);
       hsignal->Fit("gaus","","",min_range,max_range);
       TF1 *gaus = (TF1*) hsignal->GetFunction("gaus");
       can->Update();
