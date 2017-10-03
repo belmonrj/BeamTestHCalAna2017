@@ -103,7 +103,7 @@ void compare_full()
       linearity->GetYaxis()->SetLabelSize(0.06);
       linearity->GetXaxis()->SetTitle("Input Energy (GeV)");
       linearity->GetYaxis()->SetTitle("Measured Energy (GeV)");
-      linearity->Scale(1./0.816);
+      linearity->Scale(1./0.723);
       linearity->SetMaximum(65);
       linearity->SetAxisRange(0,65);
       (itype==0)? linearity->DrawClone("0"):linearity->DrawClone("Same,0");
@@ -111,7 +111,6 @@ void compare_full()
       fa->SetLineColor( colors[itype] );
       fa->SetParameter(0,1.);
       fa->SetParLimits(0,0.6,1.8);
-      fa->FixParameter(0,0.892); // ...
       linearity->Fit(fa, "QRM0", "goff", -0.1, 35.);
       fa->Draw("Same");
       name  = Form("E_{reco}=%.3f E_{truth}",fa->GetParameter(0));

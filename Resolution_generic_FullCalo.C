@@ -138,7 +138,7 @@ void Resolution_generic_FullCalo()
       hsignal->Write();
       //cout << gaus->GetParameter(2)/gaus->GetParameter(1) << endl;
       // --- leave the loop for certain energies
-      // --- i guess there's some problem with the data?
+      // --- data behave poorly at low energy
       if ( hcalout_only && en[ifile]<7 ) continue;
       else if ( hcal_only && en[ifile]<6 ) continue;
       else if ( full && en[ifile]<4 ) continue;
@@ -176,8 +176,9 @@ void Resolution_generic_FullCalo()
   can2->Print("figures/RB_fullcalo_energyreso.pdf");
   // --- linearity plot starts here
   TCanvas *c2 = new TCanvas("c2","c2",800,600);
-  linearity->Draw();
-  linearity->Fit("pol1");
+  TH1F* lin2 = (TH1F*)linearity->Clone("lin2");
+  lin2->Draw();
+  lin2->Fit("pol1"); // storing this function causes problems
   c2->Print("figures/RB_fullcalo_energylinearity.png");
   c2->Print("figures/RB_fullcalo_energylinearity.pdf");
   // --- now write all the histograms to file
