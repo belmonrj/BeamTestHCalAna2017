@@ -116,7 +116,7 @@ void compare_full()
       name  = Form("E_{reco}=%.3f E_{truth}",fa->GetParameter(0));
       legend2->AddEntry(fa, name.Data(), "L");
       //if(is_prel) prel_text->Draw("Same");
-      if(itype==2) legend2->Draw("Same");
+      //if(itype==2) legend2->Draw("Same");
 
       //Ratio
       can3->cd();
