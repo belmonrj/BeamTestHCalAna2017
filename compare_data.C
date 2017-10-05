@@ -9,13 +9,15 @@ void compare_data()
   TH1F *linearity;
   TF1 *res_fit;
   // --- legend for energy resolution
-  TLegend * legend = new TLegend( 0.18, 0.7, 0.58, 0.9 );
+  TLegend * legend = new TLegend( 0.2, 0.60, 0.6, 0.88 );
   legend->SetFillColor(0);
+  legend->SetFillStyle(0);
   legend->SetBorderSize(0);
   legend->SetTextSize(0.05);
   legend->SetLineWidth(4);
   // --- legend for linearity
-  TLegend * legend2 = new TLegend( 0.18, 0.7, 0.48, 0.9 );
+  TLegend * legend2 = new TLegend( 0.2, 0.65, 0.6, 0.90 );
+  legend2->SetFillStyle(0);
   legend2->SetFillColor(0);
   legend2->SetBorderSize(0);
   legend2->SetTextSize(0.05);
@@ -66,7 +68,7 @@ void compare_data()
       res->SetMarkerSize(1.5);
       res->SetLineColor( colors[itype] );
       res->SetLineWidth(2);
-      res->GetXaxis()->SetTitle("Input Energy (GeV)");
+      res->GetXaxis()->SetTitle("Input Energy [GeV]");
       res->GetYaxis()->SetTitle("Resolution (#sigma_{E}/#LTE#GT)");
       can->cd();
       (itype==0)? res->Draw():res->Draw("Same");
@@ -77,6 +79,11 @@ void compare_data()
       res_fit->SetRange(0.3,60);
       res_fit->SetLineColor(colors[itype]);
       res_fit->Draw("Same");
+      if ( itype == 0 )
+      {
+      legend->AddEntry("","#it{#bf{sPHENIX}} Preliminary","");
+      legend2->AddEntry("","#it{#bf{sPHENIX}} Preliminary","");
+      }
       legend->AddEntry( res, tags[itype], "P");
       legend2->AddEntry( res, tags[itype], "P");
       name  = Form("#DeltaE/E = 2%%(#deltap/p) #oplus %.1f%% #oplus %.1f%%/#sqrt{E}",
@@ -96,8 +103,8 @@ void compare_data()
       linearity->SetMarkerSize(1.5);
       linearity->GetXaxis()->SetLabelSize(0.06);
       linearity->GetYaxis()->SetLabelSize(0.06);
-      linearity->GetXaxis()->SetTitle("Input Energy (GeV)");
-      linearity->GetYaxis()->SetTitle("Measured Energy (GeV)");
+      linearity->GetXaxis()->SetTitle("Input Energy [GeV]");
+      linearity->GetYaxis()->SetTitle("Measured Energy [GeV]");
       linearity->Scale(1./0.728);
       linearity->SetMaximum(65);
       linearity->SetAxisRange(0,65);

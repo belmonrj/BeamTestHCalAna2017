@@ -8,9 +8,11 @@ Fun4All_scan.sh --- calls Fun4All_scan.C, called by submit.py and submit_full.py
 
 balance_emcal_weight.C --- calculates weights for the EMCal (used in Resolution_generic macros)
 
+compare macros --- these are the main ones for the preliminary plots
 compare_data.C --- draws resolution and linearity vs energy for both pi+ and pi-
-
+compare_full.C --- draw resolution and linearity vs energy for pi- with the shower developing in various subsystems
 compare_signal_sim.C --- draws 1d distribution comparison between simulation and real data
+compare_sim.C --- draws resolution and linearity vs energy for pi+ and pi- in simulation
 
 cosmics macros --- draw 1d ADC distributions from cosmics for various detectors, comparisons are between prototype2 (2016) and prototype3 (2017)
 cosmics_hcal_compare.C

@@ -9,13 +9,13 @@ void compare_sim()
   TH1F *linearity;
   TF1 *res_fit;
   // --- legend for energy resolution
-  TLegend * legend = new TLegend( 0.25, 0.60, 0.65, 0.83 );
+  TLegend * legend = new TLegend( 0.25, 0.60, 0.65, 0.88 );
   legend->SetFillColor(0);
   legend->SetBorderSize(0);
   legend->SetTextSize(0.05);
   legend->SetLineWidth(4);
   // --- legend for linearity
-  TLegend * legend2 = new TLegend( 0.18, 0.7, 0.48, 0.9 );
+  TLegend * legend2 = new TLegend( 0.25, 0.65, 0.65, 0.90 );
   legend2->SetFillColor(0);
   legend2->SetBorderSize(0);
   legend2->SetTextSize(0.05);
@@ -66,7 +66,7 @@ void compare_sim()
       res->SetMarkerSize(1.5);
       res->SetLineColor( colors[itype] );
       res->SetLineWidth(2);
-      res->GetXaxis()->SetTitle("Input Energy (GeV)");
+      res->GetXaxis()->SetTitle("Input Energy [GeV]");
       res->GetYaxis()->SetTitle("Resolution (#sigma_{E}/#LTE#GT)");
       can->cd();
       (itype==0)? res->Draw():res->Draw("Same");
@@ -77,6 +77,11 @@ void compare_sim()
       res_fit->SetRange(0.3,60);
       res_fit->SetLineColor(colors[itype]);
       res_fit->Draw("Same");
+      if ( itype == 0 )
+      {
+      legend->AddEntry("","#it{#bf{sPHENIX}} Preliminary","");
+      legend2->AddEntry("","#it{#bf{sPHENIX}} Preliminary","");
+      }
       legend->AddEntry( res, tags[itype], "P");
       legend2->AddEntry( res, tags[itype], "P");
       name  = Form("#DeltaE/E = %.1f%% #oplus %.1f%%/#sqrt{E}",
@@ -96,9 +101,9 @@ void compare_sim()
       linearity->SetMarkerSize(1.5);
       linearity->GetXaxis()->SetLabelSize(0.06);
       linearity->GetYaxis()->SetLabelSize(0.06);
-      linearity->GetXaxis()->SetTitle("Input Energy (GeV)");
-      linearity->GetYaxis()->SetTitle("Measured Energy (GeV)");
-      linearity->Scale(1./0.816);
+      linearity->GetXaxis()->SetTitle("Input Energy [GeV]");
+      linearity->GetYaxis()->SetTitle("Measured Energy [GeV]");
+      linearity->Scale(1./0.68);
       linearity->SetMaximum(65);
       linearity->SetAxisRange(0,65);
       (itype==0)? linearity->DrawClone("0"):linearity->DrawClone("Same,0");
@@ -106,12 +111,13 @@ void compare_sim()
       fa->SetLineColor( colors[itype] );
       fa->SetParameter(0,1.);
       fa->SetParLimits(0,0.6,1.8);
+      fa->FixParameter(0,1.0); // testing...
       linearity->Fit(fa, "QRM0", "goff", -0.1, 35.);
       fa->Draw("Same");
       name  = Form("E_{reco}=%.3f E_{truth}",fa->GetParameter(0));
       legend2->AddEntry(fa, name.Data(), "L");
       //if(is_prel) prel_text->Draw("Same");
-      if(itype==2) legend2->Draw("Same");
+      //if(itype==2) legend2->Draw("Same");
 
       //Ratio
       can3->cd();
@@ -141,5 +147,5 @@ void compare_sim()
   can3->Print("figures/RB_hcalonly_sim_linearity_comparison_pionplusminus.png");
   can3->Print("figures/RB_hcalonly_sim_linearity_comparison_pionplusminus.pdf");
 
-
 }
+
