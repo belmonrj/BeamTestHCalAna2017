@@ -21,25 +21,31 @@ void compare_signal_sim()
 
   TString name;
   // data is 32 GeV.. simulation is 28 GeV...
+  // --- 2 GeV looks very bad
   //double en[] = {2, 4, 6, 8, 12, 16, 24}; //, 28}; // pionn
-  double en[] = {2, 4, 6, 8, 12, 16, 20}; //, 28}; // pionp
-  //double en[] = {2, 4, 6, 8, 12, 16, 24, 32};
+  //double en[] = {2, 4, 6, 8, 12, 16, 20}; //, 28}; // pionp
+  //double en[] = {4, 6, 8, 12, 16, 24}; //, 28}; // pionn
+  double en[] = {4, 6, 8, 12, 16, 20}; //, 28}; // pionp
+
 
   char* tags[] = {"DATA", "SIM"};
 
   TCanvas *can = new TCanvas("can","can",800,500);
-  can->Divide(4,2,0.001,0.001);
+  //can->Divide(4,2,0.001,0.001);
+  can->Divide(3,2,0.001,0.001);
   int colors[] = {1, 30};
   double new_bins[1000];
   double data_max;
   TH1F *data_copy;
 
-  for(int ien=0; ien<8; ien++)
+  //for(int ien=0; ien<8; ien++)
+  for(int ien=0; ien<6; ien++)
     {
       name = Form("hsignal_%i", (int)en[ien] );
       TVirtualPad *p = can->cd(ien+1);
       p->SetTopMargin(0.01);
-      p->SetLeftMargin(0.17);
+      p->SetLeftMargin(0.2);
+      p->SetBottomMargin(0.2);
       p->SetRightMargin(0.01);
       data_max = 0;
 
