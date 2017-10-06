@@ -8,16 +8,18 @@ void compare_signal_sim()
 
   TH1F *signal_data;
   TH1F *signal_sim;
-  TLegend * legend = new TLegend( 0.65, 0.6, 0.88, 0.75, "", "NDC" );
+  //TLegend * legend = new TLegend( 0.65, 0.6, 0.88, 0.75, "", "NDC" );
+  TLegend * legend = new TLegend( 0.65, 0.7, 0.88, 0.85, "", "NDC" );
   legend->SetFillColor(0);
   legend->SetBorderSize(0);
-  legend->SetTextSize( .09 );
+  legend->SetTextSize(0.09);
   legend->SetLineWidth(5);
-
-  TLegend * legend2 = new TLegend( 0.2, 0.6, 0.5, 0.8, "", "NDC" );
+  TLegend * legend2 = new TLegend( 0.25, 0.7, 0.48, 0.85, "", "NDC" );
   legend2->SetFillColor(0);
   legend2->SetBorderSize(0);
-  legend2->SetTextSize( .03 );
+  legend2->SetTextSize(0.09);
+  legend2->SetLineWidth(5);
+
 
   TString name;
   // data is 32 GeV.. simulation is 28 GeV...
@@ -30,7 +32,8 @@ void compare_signal_sim()
 
   char* tags[] = {"DATA", "SIM"};
 
-  TCanvas *can = new TCanvas("can","can",800,500);
+  //TCanvas *can = new TCanvas("can","can",800,500);
+  TCanvas *can = new TCanvas("can","can",960,600);
   //can->Divide(4,2,0.001,0.001);
   can->Divide(3,2,0.001,0.001);
   int colors[] = {1, 30};
@@ -65,12 +68,17 @@ void compare_signal_sim()
           signal_data->GetYaxis()->SetLabelSize(0.05);
           signal_data->GetXaxis()->CenterTitle(true);
           signal_data->GetYaxis()->CenterTitle(true);
-          signal_data->GetYaxis()->SetTitleOffset(1.1);
-          signal_data->GetYaxis()->SetTitleSize(0.07);
+          signal_data->GetYaxis()->SetTitleOffset(1.8);
+          signal_data->GetYaxis()->SetTitleSize(0.05);
           signal_data->GetXaxis()->SetTitleSize(0.05);
           signal_data->SetStats(0);
           signal_data->Rebin(4);
-          signal_data->SetAxisRange( 0, signal_data->GetMean()+4*signal_data->GetRMS());
+          // --- these don't do anything...
+          // if (en[ien] <  16 ) signal_data->SetAxisRange( 0, signal_data->GetMean()+4*signal_data->GetRMS());
+          // if (en[ien] >= 16 ) signal_data->SetAxisRange( 0, signal_data->GetMean()+6*signal_data->GetRMS());
+          // --- these don't do anything either...
+          // if (en[ien] <  16 ) signal_data->GetXaxis()->SetRangeUser( 0, signal_data->GetMean()+4*signal_data->GetRMS());
+          // if (en[ien] >= 16 ) signal_data->GetXaxis()->SetRangeUser( 0, signal_data->GetMean()+6*signal_data->GetRMS());
           double min_range = signal_data->GetMean()-1.6*signal_data->GetRMS();
           double max_range = signal_data->GetMean()+1.6*signal_data->GetRMS();
           signal_data->Fit("gaus","R","same",min_range,max_range);
@@ -110,7 +118,8 @@ void compare_signal_sim()
               signal_data->Draw("h,Same");
               data_copy->Draw("Sames");
             }
-          TText *txt = new TText(0.7,0.8,Form("%2.0f GeV",en[ien]) );
+          TText *txt = new TText(0.7,0.87,Form("%2.0f GeV",en[ien]) );
+          //if ( en[ien] >= 16 ) txt = new TText(0.2,0.87,Form("%2.0f GeV",en[ien]) );
           txt->SetNDC();
           txt->SetTextSize(1.8*txt->GetTextSize());
           txt->Draw("Same");
@@ -128,6 +137,11 @@ void compare_signal_sim()
   //p = can->cd(9);
   //p->SetLeftMargin(0);
   //p->SetRightMargin(0);
+  can->cd(0);
+  TLatex *prel_text = new TLatex(0.4,0.505,"#it{#bf{sPHENIX}} Preliminary" );
+  prel_text->SetNDC();
+  prel_text->SetTextSize(0.05);
+  prel_text->Draw("Same");
 
   // can->Print("figures/RB_hcalonly_sim_pionn_comparison.png");
   // can->Print("figures/RB_hcalonly_sim_pionn_comparison.pdf");
